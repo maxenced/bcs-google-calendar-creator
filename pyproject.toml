@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "bcs_calendar_creator"
+version = "0.1.0"
+description = "Create Google compatible calendars from spec"
+authors = ["Claranet <Maxence>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.0"
+pyright = "^1.1.335"
+pytest = "^8.1.1"
+tox = "^4.14.2"
+
+[tool.poetry.scripts]
+bcs_calendar_creator = 'bcs_calendar_creator.main:main'
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

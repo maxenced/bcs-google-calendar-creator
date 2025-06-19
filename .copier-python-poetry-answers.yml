@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v0.6.4
+_src_path: git@git.fr.clara.net:claranet/guildes/pipeline/python-templates/python-poetry-project-template.git
+author_email: Maxence
+author_name: Claranet
+git_default_branch: main
+project_description: Create Google compatible calendars from spec
+project_name: BCS Calendar creator
+project_slug: bcs_calendar_creator
+project_type: script
+publish_pypi_package: false
+renovate_automerge_enabled: false
