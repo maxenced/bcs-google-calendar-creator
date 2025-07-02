@@ -1,7 +1,9 @@
 import logging
 import yaml
 import os.path
+import sys
 import click
+import yamale
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -27,6 +29,11 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
 def main(no_override, debug):
     # Set up logging with colored output
     setup_logging(debug=debug)
+
+    # Validate configuration file against schema
+    config_path = "src/bcs_calendar_creator/configuration.yaml"
+    schema_path = "src/bcs_calendar_creator/configuration.yaml.schema"
+
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -47,8 +54,17 @@ def main(no_override, debug):
     try:
         logging.info("Starting")
         service = build("calendar", "v3", credentials=creds)
-        with open("src/bcs_calendar_creator/configuration.yaml", "r") as f:
+        with open(config_path, "r") as f:
             config = yaml.load(f, yaml.SafeLoader)
+            try:
+                logging.info("Validating configuration file against schema")
+                schema = yamale.make_schema(schema_path)
+                data = yamale.make_data(content=yaml.dump(config))
+                yamale.validate(schema, data, strict=False)
+                logging.info("Configuration validation successful")
+            except yamale.YamaleError as e:
+                logging.error(f"Configuration validation failed: {e}")
+                sys.exit(1)
             for category, data in config.get("categories").items():
                 logging.info(f"Working on {category}")
                 c = Category(category, service, data)

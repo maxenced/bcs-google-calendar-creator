@@ -2,6 +2,7 @@ import base64
 import datetime
 import uuid
 import logging
+from zoneinfo import ZoneInfo
 
 
 def build_start_end(
@@ -12,7 +13,9 @@ def build_start_end(
     """
     Build start and end datetime from a start and duration
     """
-    start_date = datetime.datetime.strptime(f"{day} {start}+0200", "%d/%m/%Y %Hh%M%z")
+    start_date = datetime.datetime.strptime(f"{day} {start}", "%d/%m/%Y %Hh%M").replace(
+        tzinfo=ZoneInfo("Europe/Paris"),
+    )
     end_date = start_date + datetime.timedelta(minutes=duration)
     logging.debug(
         f"[build_start_date] build {start_date} / {end_date} from {day}, {start}, {duration}",

@@ -76,16 +76,17 @@ categories:
 
   cours_n1_mardi:
     calendar: c_2cccf505e636ee3a357a381b7ee1ad1b8e25d14fcbca9498928356b3de514b0c@group.calendar.google.com
-    title: Cours niveau 1 - Mardi
-    location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
-    duration: 60
-    start_time: 20h30
-    description: |
-      Cours niveau 1
-      Ce cours est précédé de 15 minutes de pratique en commun avec le niveau 3.
-      Vous êtes encouragé·e·s à arriver dès 20h15 !
+    default:
+      title: Cours niveau 1 - Mardi
+      location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
+      duration: 60
+      start_time: 20h30
+      description: |
+        Cours niveau 1
+        Ce cours est précédé de 15 minutes de pratique en commun avec le niveau 3.
+        Vous êtes encouragé·e·s à arriver dès 20h15 !
 
-      Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+        Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
     items: *tuesday_days
 
 #  cours_n2_mardi:

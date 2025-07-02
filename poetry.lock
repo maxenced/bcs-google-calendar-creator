@@ -804,7 +804,21 @@ platformdirs = ">=3.9.1,<5"
 docs = ["furo (>=2023.7.26)", "proselint (>=0.13)", "sphinx (>=7.1.2,!=7.3)", "sphinx-argparse (>=0.4)", "sphinxcontrib-towncrier (>=0.2.1a0)", "towncrier (>=23.6)"]
 test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess (>=1)", "flaky (>=3.7)", "packaging (>=23.1)", "pytest (>=7.4)", "pytest-env (>=0.8.2)", "pytest-freezer (>=0.4.8)", "pytest-mock (>=3.11.1)", "pytest-randomly (>=3.12)", "pytest-timeout (>=2.1)", "setuptools (>=68)", "time-machine (>=2.10)"]
 
+[[package]]
+name = "yamale"
+version = "4.0.4"
+description = "A schema and validator for YAML."
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "yamale-4.0.4-py3-none-any.whl", hash = "sha256:04f914c0886bda03ac20f8468272cfd9374a634a062549490eff2beedeb30497"},
+    {file = "yamale-4.0.4.tar.gz", hash = "sha256:e524caf71cbbbd15aa295e8bdda01688ac4b5edaf38dd60851ddff6baef383ba"},
+]
+
+[package.dependencies]
+pyyaml = "*"
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "5e70918d9fec8ca747ffc51659d3177520a2572783c0bc19db14f78bcaa317bc"
+content-hash = "597e8836c84f4c92e5c209df9935957b1cce531287d9b5e9f98b0f67294d9904"

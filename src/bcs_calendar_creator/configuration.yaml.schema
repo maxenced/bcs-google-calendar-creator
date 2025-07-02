@@ -1,9 +1,12 @@
-categories: include('category')
+categories: map(include('category'), key=str())
+---
 
 category:
     calendar: str()
     default: include('category_config', required=False)
-    items: list([category_config])
+    items: list(include('category_config'))
+
+---
 
 category_config:
     title: str(required=False)
