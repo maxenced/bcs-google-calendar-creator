@@ -23,7 +23,7 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
     "--no-override",
     is_flag=True,
     default=False,
-    help="Prevent overriding existing data",
+    help="Prevent overriding existing data. If set, overlaping event won't be deleted",
 )
 @click.option("--debug", is_flag=True, default=False, help="Enable debug mode")
 @click.option(
@@ -31,7 +31,12 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
     type=str,
     help="Filter to only one category. Add category key as value. Ex: --target ateliers_level3",
 )
-def main(no_override: bool, debug: bool, target: str):
+@click.option(
+    "--prune",
+    type=str,
+    help="Prune all future events in one category. Add category key as value. Ex: --prune ateliers_level3",
+)
+def main(no_override: bool, debug: bool, target: str, prune: str):
     # Set up logging with colored output
     setup_logging(debug=debug)
 
@@ -70,7 +75,10 @@ def main(no_override: bool, debug: bool, target: str):
             except yamale.YamaleError as e:
                 logging.error(f"Configuration validation failed: {e}")
                 sys.exit(1)
-            if target:
+            if prune:
+                logging.info(f"Pruning {target}")
+
+            elif target:
                 logging.info(f"Filter on {target}")
                 data = config.get("categories").get(target, {})
                 if not data:
@@ -83,7 +91,7 @@ def main(no_override: bool, debug: bool, target: str):
                 for category, data in config.get("categories").items():
                     logging.info(f"Working on {category}")
                     c = Category(category, service, data)
-                    c.update()
+                    c.update(no_override)
 
     except HttpError as error:
         print(f"An error occurred: {error}")

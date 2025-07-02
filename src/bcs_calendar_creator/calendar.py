@@ -3,7 +3,7 @@ import logging
 from zoneinfo import ZoneInfo
 from googleapiclient.discovery import Resource
 
-from bcs_calendar_creator.utils import build_start_end, create_id
+from bcs_calendar_creator.utils import build_start_end, create_id, prefix
 
 
 class Category:
@@ -18,26 +18,35 @@ class Category:
         self._name = name
         self._config = config
         self._calendar = config["calendar"]
+        self._prefix = prefix(self._calendar, "bcscal")
         self._defaults = config.get("default", {})
         self._items = config["items"]
         self._service = service
         self._existing = self._load_existing()
         self._calendar_name = self._get_calendar_name(self._calendar)
 
-    def update(self):
+    def update(self, no_override=False):
         """
         Create or update all items from category.items
         """
         now = datetime.datetime.now(tz=ZoneInfo("Europe/Paris"))
         for item in self._config.get("items", []):
             item.update(self._config["default"])
-            self._create_event(item, now)
+            self._create_event(item, now, no_override=no_override)
+
+    def prune(self, force=False):
+        """
+        Prune all future events from calendar
+        @param force : if true, will delete all events, if false, will only delete event set by this tool
+        """
+        for existing in self._existing:
+            pass
 
     def _create_event(
         self,
         event: dict,
         lower_bound: datetime.datetime,
-        override=True,
+        no_override=False,
     ) -> None:
         """
         Create a new event
@@ -45,7 +54,7 @@ class Category:
         @param lower_bound: Datetime object. Event will be ignored if its start if before lower_bound
         @param override: If an event already exists with an overlapping timeslot, replace it
         """
-        if override:
+        if not no_override:
             start, end = build_start_end(
                 event["start_day"],
                 event["start_time"],
@@ -85,7 +94,7 @@ class Category:
             spec["duration"],
         )
         event = {
-            "id": create_id(),
+            "id": create_id(self._prefix),
             "summary": spec["title"],
             "location": spec["location"],
             "description": spec["description"],
