@@ -1,0 +1,113 @@
+tuesday_days: &tuesday_days
+  - start_day: 16/09/2025
+  - start_day: 23/09/2025
+  - start_day: 30/09/2025
+  - start_day: 07/10/2025
+  - start_day: 14/10/2025
+  - start_day: 04/11/2025
+  - start_day: 18/11/2025
+  - start_day: 25/11/2025
+  - start_day: 02/12/2025
+  - start_day: 09/12/2025
+  - start_day: 16/12/2025
+  - start_day: 06/01/2026
+  - start_day: 13/01/2026
+  - start_day: 20/01/2026
+  - start_day: 27/01/2026
+  - start_day: 03/02/2026
+  - start_day: 10/02/2026
+  - start_day: 03/03/2026
+  - start_day: 10/03/2026
+  - start_day: 17/03/2026
+  - start_day: 24/03/2026
+  - start_day: 31/03/2026
+  - start_day: 07/04/2026
+  - start_day: 28/04/2026
+  - start_day: 05/05/2026
+  - start_day: 12/05/2026
+  - start_day: 19/05/2026
+  - start_day: 26/05/2026
+  - start_day: 02/06/2026
+  - start_day: 09/06/2026
+
+categories:
+  initiations_level3:
+    calendar: c_685044e5e4c6865de410ac9a2c4bb39cc25e2000774d7cd113a76ea07d001956@group.calendar.google.com
+    default:
+      title: Initiation + Soirée 100% WCS
+      location: LEVEL3, 1 rue Jeanne Malivel, Val D'Orson, 35770, 35770 Vern-sur-Seiche, France
+      duration: 285 # 4h45 in minutes
+      start_time: 20h00
+      description: |
+        Venez découvrir le West Coast Swing le temps d'une initiation, et pratiquer avec la communauté pendant la soirée qui suit.
+        Seul·e ou à plusieurs, venez découvrir votre future activité !
+
+        Initiation (20h - 21h30) + Soirée (21h30 - 00h45) -  6€, 1 conso offerte.
+
+        Inscription sur https://level3.audrei.net/events/8696192341af1c1f79548efdb1a2a698
+    items:
+      - start_day: 30/08/2025
+      - start_day: 23/05/2026
+      - start_day: 27/06/2026
+
+  ateliers_level3:
+    calendar: c_685044e5e4c6865de410ac9a2c4bb39cc25e2000774d7cd113a76ea07d001956@group.calendar.google.com
+    default:
+      title: Atelier + Soirée 100% WCS
+      location: LEVEL3, 1 rue Jeanne Malivel, Val D'Orson, 35770, 35770 Vern-sur-Seiche, France
+      duration: 285 # 4h45 in minutes
+      start_time: 20h00
+      description: |
+        Atelier (20h - 21h30) + Soirée (21h30 - 00h45) -  10€, 1 conso offerte. Soirée seule à 6€ avec une conso.
+
+        Informations sur les niveaux / thèmes à venir.
+
+        Inscription sur https://level3.audrei.net/events/8696192341af1c1f79548efdb1a2a698
+    items:
+      - start_day: 27/09/2025
+      - start_day: 18/10/2025
+      - start_day: 22/11/2025
+      - start_day: 10/01/2026
+      - start_day: 31/01/2026
+      - start_day: 14/02/2026
+      - start_day: 21/03/2026
+        title: "[A Confirmer] Atelier + Soirée 100% WCS"
+      - start_day: 25/04/2026
+
+  cours_n1_mardi:
+    calendar: c_2cccf505e636ee3a357a381b7ee1ad1b8e25d14fcbca9498928356b3de514b0c@group.calendar.google.com
+    title: Cours niveau 1 - Mardi
+    location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
+    duration: 60
+    start_time: 20h30
+    description: |
+      Cours niveau 1
+      Ce cours est précédé de 15 minutes de pratique en commun avec le niveau 3.
+      Vous êtes encouragé·e·s à arriver dès 20h15 !
+
+      Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+    items: *tuesday_days
+
+#  cours_n2_mardi:
+#    calendar:
+#    title: Cours niveau 2 - Mardi
+#    location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
+#    duration: 60
+#    start_time: 21h30
+#    description: |
+#      Cours niveau 2 - tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+#    items: *tuesday_days
+#
+#  cours_n3_mardi:
+#    calendar:
+#    title: Cours niveau 3 - Mardi
+#    location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
+#    duration: 60
+#    start_time: 19h15
+#    description: |
+#      Cours niveau 3
+#      Ce cours est suivi de 15 minutes de pratique en commun avec le niveau 1
+#
+#      Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+#    items: *tuesday_days
+#
