@@ -1,0 +1,14 @@
+categories: include('category')
+
+category:
+    calendar: str()
+    default: include('category_config', required=False)
+    items: list([category_config])
+
+category_config:
+    title: str(required=False)
+    location: str(required=False)
+    duration: int(required=False)
+    start_time: str(required=False)
+    start_day: str(required=False)
+    description: str(required=False)

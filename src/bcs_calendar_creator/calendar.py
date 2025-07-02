@@ -21,15 +21,14 @@ class Category:
         self._items = config["items"]
         self._service = service
         self._existing = self._load_existing()
+        self._calendar_name = self._get_calendar_name(self._calendar)
 
     def update(self):
         """
         Create or update all items from category.items
         """
-        logging.info(f"Config : {self._config}")
         for item in self._config.get("items", []):
             item.update(self._config["default"])
-            logging.info(item)
             self._create_event(item)
 
     def _create_event(self, event: dict, override=True) -> None:
@@ -38,22 +37,28 @@ class Category:
         @param event : Event desc as dict
         @param override: If an event already exists with an overlapping timeslot, replace it
         """
-        logging.info(f"Adding event {event['title']} to {self._calendar}")
         if override:
             start, end = build_start_end(
                 event["start_day"],
                 event["start_time"],
                 event["duration"],
             )
+            logging.info(
+                f"Adding event '{event['title']}' starting at {start} to {self._calendar_name}",
+            )
             for existing in self._existing:
-                if self._conflicts(existing, start, end):
+                if existing.get("id", "").startswith("bcscal"):
+                    if self._conflicts(existing, start, end):
+                        self._service.events().delete(
+                            calendarId=self._calendar,
+                            eventId=existing.get("id"),
+                        ).execute()
+                else:
                     logging.info(
-                        f"Event {existing['name']} conflicts with new event start/end time {start}/{end}, will delete it",
+                        f"Event {existing['id']} does not start with our prefix, ignore it",
                     )
-                    self._service.events().delete(
-                        calendarId=self._calendar,
-                        eventId=existing.get("id"),
-                    ).execute()
+                    self._existing.remove(existing)
+
         ev = self._build_event(event)
         self._service.events().insert(calendarId=self._calendar, body=ev).execute()
 
@@ -80,7 +85,17 @@ class Category:
                 "timeZone": "Europe/Paris",
             },
         }
+        logging.debug(f"Ready to create this event : {event}")
         return event
+
+    def _get_calendar_name(self, cal_id: str) -> str:
+        """Return calendar readable name from its id
+        @param cal_id : ID of calendar, like c_<random>@group.calendar.google.com
+        @return 'summary' field of calendar, or this-calendar-does-not-exist string if calendar does not exist
+        """
+
+        r = self._service.calendars().get(calendarId=cal_id).execute()
+        return r.get("summary", "this-calendar-does-not-exist")
 
     def _load_existing(self) -> list:
         """
@@ -100,6 +115,8 @@ class Category:
         )
         events: list[Resource] = events_result.get("items", [])
         logging.info(f"Found {len(events)} upcoming events in {self._name} calendar")
+        for event in events:
+            logging.debug(event.get("htmlLink", ""))  # type: ignore
         return events
 
     def _conflicts(
@@ -115,13 +132,19 @@ class Category:
         @param end : End of time slot to check
         @return : True if any part of the event occurs between start and end
         """
-        event_start = event["start"].get("dateTime", event["start"].get("date"))
-        event_end = event["end"].get("dateTime", event["end"].get("date"))
+        event_start = datetime.datetime.strptime(
+            event["start"].get("dateTime", event["start"].get("date")),
+            "%Y-%m-%dT%H:%M:%S%z",
+        )
+        event_end = datetime.datetime.strptime(
+            event["end"].get("dateTime", event["end"].get("date")),
+            "%Y-%m-%dT%H:%M:%S%z",
+        )
         res = (event_start >= start and event_start <= end) or (
             event_end >= start and event_end <= end
         )
         if res:
             logging.debug(
-                f"Event {event['name']} conflicts with start {start} / end {end}",
+                f"Event '{event['summary']}' starting at {event_start} conflicts with start {start} / end {end}. will delete it",
             )
         return res

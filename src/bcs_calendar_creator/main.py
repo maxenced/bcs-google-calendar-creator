@@ -10,6 +10,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 from bcs_calendar_creator.calendar import Category
+from bcs_calendar_creator.logging_config import setup_logging
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
@@ -24,13 +25,8 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
 )
 @click.option("--debug", is_flag=True, default=False, help="Enable debug mode")
 def main(no_override, debug):
-    loglevel = logging.INFO
-    if debug:
-        loglevel = logging.DEBUG
-    logging.basicConfig(
-        format="[%(name)s]: [%(asctime)s] [%(levelname)s] {%(filename)s:%(lineno)d} %(funcName)s # %(message)s",
-        level=loglevel,
-    )
+    # Set up logging with colored output
+    setup_logging(debug=debug)
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first

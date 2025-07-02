@@ -1,3 +1,4 @@
+import base64
 import datetime
 import uuid
 import logging
@@ -26,12 +27,6 @@ def create_id(prefix="bcscal") -> str:
     """
     u = uuid.uuid4()
 
-    base32_bytes = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ234567="
-    base32hex_bytes = b"0123456789ABCDEFGHIJKLMNOPQRSTUV="
-    trans_to_hex = bytes.maketrans(base32_bytes, base32hex_bytes)
-
-    import base64
-
-    u32 = base64.b32encode(u.bytes).translate(trans_to_hex)
+    u32: str = base64.b32hexencode(u.bytes).decode("utf-8").lower().strip("=")
     logging.debug(f"Created uuid {prefix}{u32}")
     return f"{prefix}{u32}"
