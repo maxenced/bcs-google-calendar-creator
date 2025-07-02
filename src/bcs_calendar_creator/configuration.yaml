@@ -30,7 +30,84 @@ tuesday_days: &tuesday_days
   - start_day: 02/06/2026
   - start_day: 09/06/2026
 
+wednesday_days: &wednesday_days
+  - start_day: 17/09/2025
+  - start_day: 24/09/2025
+  - start_day: 01/10/2025
+  - start_day: 08/10/2025
+  - start_day: 15/10/2025
+  - start_day: 05/11/2025
+  - start_day: 19/11/2025
+  - start_day: 26/11/2025
+  - start_day: 03/12/2025
+  - start_day: 10/12/2025
+  - start_day: 17/12/2025
+  - start_day: 07/01/2026
+  - start_day: 14/01/2026
+  - start_day: 21/01/2026
+  - start_day: 28/01/2026
+  - start_day: 04/02/2026
+  - start_day: 11/02/2026
+  - start_day: 04/03/2026
+  - start_day: 11/03/2026
+  - start_day: 18/03/2026
+  - start_day: 25/03/2026
+  - start_day: 01/04/2026
+  - start_day: 08/04/2026
+  - start_day: 29/04/2026
+  - start_day: 06/05/2026
+  - start_day: 13/05/2026
+  - start_day: 20/05/2026
+  - start_day: 27/05/2026
+  - start_day: 03/06/2026
+  - start_day: 10/06/2026
+
+thursday_days: &thursday_days
+  - start_day: 18/09/2025
+  - start_day: 25/09/2025
+  - start_day: 02/10/2025
+  - start_day: 09/10/2025
+  - start_day: 16/10/2025
+  - start_day: 06/11/2025
+  - start_day: 20/11/2025
+  - start_day: 27/11/2025
+  - start_day: 04/12/2025
+  - start_day: 11/12/2025
+  - start_day: 18/12/2025
+  - start_day: 08/01/2026
+  - start_day: 15/01/2026
+  - start_day: 22/01/2026
+  - start_day: 29/01/2026
+  - start_day: 05/02/2026
+  - start_day: 12/02/2026
+  - start_day: 05/03/2026
+  - start_day: 12/03/2026
+  - start_day: 19/03/2026
+  - start_day: 26/03/2026
+  - start_day: 02/04/2026
+  - start_day: 09/04/2026
+  - start_day: 30/04/2026
+  - start_day: 07/05/2026
+  - start_day: 14/05/2026
+  - start_day: 21/05/2026
+  - start_day: 28/05/2026
+  - start_day: 04/06/2026
+  - start_day: 11/06/2026
+
+holiday_training_days: &holiday_training_days
+  - start_day: 23/10/2025
+  - start_day: 30/10/2025
+  - start_day: 13/11/2025
+  - start_day: 19/02/2027
+  - start_day: 26/02/2026
+  - start_day: 16/04/2026
+  - start_day: 23/04/2026
+
 categories:
+
+  #
+  # Level 3
+  #
   initiations_level3:
     calendar: c_685044e5e4c6865de410ac9a2c4bb39cc25e2000774d7cd113a76ea07d001956@group.calendar.google.com
     default:
@@ -74,6 +151,9 @@ categories:
         title: "[A Confirmer] Atelier + Soirée 100% WCS"
       - start_day: 25/04/2026
 
+  #
+  # Mardi
+  #
   cours_n1_mardi:
     calendar: c_2cccf505e636ee3a357a381b7ee1ad1b8e25d14fcbca9498928356b3de514b0c@group.calendar.google.com
     default:
@@ -89,26 +169,112 @@ categories:
         Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
     items: *tuesday_days
 
-#  cours_n2_mardi:
-#    calendar:
-#    title: Cours niveau 2 - Mardi
-#    location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
-#    duration: 60
-#    start_time: 21h30
-#    description: |
-#      Cours niveau 2 - tous les détails sur https://www.breizhcoastswing.fr/les-cours/
-#    items: *tuesday_days
-#
-#  cours_n3_mardi:
-#    calendar:
-#    title: Cours niveau 3 - Mardi
-#    location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
-#    duration: 60
-#    start_time: 19h15
-#    description: |
-#      Cours niveau 3
-#      Ce cours est suivi de 15 minutes de pratique en commun avec le niveau 1
-#
-#      Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
-#    items: *tuesday_days
-#
+  cours_n2_mardi:
+    calendar: c_35650dd62f4cdcfe486dcfe1fd483ecdc662279e7dab49ee9363bd1beb127fee@group.calendar.google.com
+    default:
+      title: Cours niveau 2 - Mardi
+      location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
+      duration: 60
+      start_time: 21h30
+      description: |
+        Cours niveau 2
+
+        Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+    items: *tuesday_days
+
+  cours_n3_mardi:
+    calendar: c_78df50123aed593ccac54f57c0d49f2ad6dbda434c6d026065e0f7c4c2244a62@group.calendar.google.com
+    default:
+      title: Cours niveau 3 - Mardi
+      location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
+      duration: 60
+      start_time: 20h15
+      description: |
+        Cours niveau 3
+        Ce cours est suivi de 15 minutes de pratique en commun avec le niveau 1.
+
+        Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+    items: *tuesday_days
+
+  #
+  # Mercredi
+  #
+  cours_n1_mercredi:
+    calendar: c_882abc9dc3d2cafbd3a29c865059a50b9b285736d0708e8156a726498d438b94@group.calendar.google.com
+    default:
+      title: Cours niveau 1 - Mercredi
+      location: La Cabane, 12 Rte des Parcs Quercie, 35510 Cesson-Sévigné, France
+      duration: 60
+      start_time: 19h15
+      description: |
+        Cours niveau 1
+        Ce cours est suivi de 15 minutes de pratique en commun avec le niveau 2.
+
+        Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+    items: *wednesday_days
+
+  cours_n2_mercredi:
+    calendar: c_7c9177815e59230da75c64630e7179019b1102a7429c7552bf4fbc59de463013@group.calendar.google.com
+    default:
+      title: Cours niveau 2 - Mercredi
+      location: La Cabane, 12 Rte des Parcs Quercie, 35510 Cesson-Sévigné, France
+      duration: 60
+      start_time: 20h30
+      description: |
+        Cours niveau 2
+        Ce cours est précédé de 15 minutes de pratique en commun avec le niveau 1.
+        Vous êtes encouragé·e·s à arriver dès 20h15 !
+
+        Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+    items: *wednesday_days
+
+  cours_n4_mercredi:
+    calendar: c_ecc63465282d2b033399cffc03699e5fee0a094d8b6a85cfadc3b96f39447f53@group.calendar.google.com
+    default:
+      title: Cours niveau 4 - Mercredi
+      location: La Cabane, 12 Rte des Parcs Quercie, 35510 Cesson-Sévigné, France
+      duration: 60
+      start_time: 21h30
+      description: |
+        Cours niveau 4
+
+        Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+    items: *wednesday_days
+
+  #
+  # Jeudi
+  #
+  cours_n3_jeudi:
+    calendar: c_f320e8edf07d8c7c4ac14f99cba69447684ba04908664bbadda8fd89130a03c3@group.calendar.google.com
+    default:
+      title: Cours niveau 3 - Jeudi
+      location: Association du Bourg l'Évêque, 16 Rue Papu, 35000 Rennes, France
+      duration: 60
+      start_time: 19h15
+      description: |
+        Cours niveau 3
+        Ce cours est suivi de 2h d'entrainement libre ouvert aux adhérent·e·s.
+
+        Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+    items: *thursday_days
+
+  entrainement_jeudi_annee:
+    calendar: c_27c826c3086f4de1829bac9712eaf60fcca9169438715e1d294e8ee1344fb382@group.calendar.google.com
+    default: &entrainement_jeudi
+      title: Entrainement libre - Jeudi
+      location: Association du Bourg l'Évêque, 16 Rue Papu, 35000 Rennes, France
+      duration: 120
+      start_time: 20h15
+      description: |
+        Session de 2h d'entrainement libre ouvert aux adhérent·e·s.
+        Ce créneau n'est pas une pratique mais permet à chacun·e de venir s'entrainer sur le sujet qu'iel souhaite.
+        Il est recommandé de s'organiser en amont avec d'autres personnes pour s'assurer d'avoir du monde avec qui s'entrainer.
+
+        Tous les détails sur https://www.breizhcoastswing.fr/les-cours/
+    items: *thursday_days
+
+  entrainement_jeudi_vacances:
+    calendar: c_27c826c3086f4de1829bac9712eaf60fcca9169438715e1d294e8ee1344fb382@group.calendar.google.com
+    default:
+      <<: *entrainement_jeudi
+    items: *holiday_training_days

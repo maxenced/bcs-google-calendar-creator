@@ -1,5 +1,6 @@
 import datetime
 import logging
+from zoneinfo import ZoneInfo
 from googleapiclient.discovery import Resource
 
 from bcs_calendar_creator.utils import build_start_end, create_id
@@ -27,14 +28,21 @@ class Category:
         """
         Create or update all items from category.items
         """
+        now = datetime.datetime.now(tz=ZoneInfo("Europe/Paris"))
         for item in self._config.get("items", []):
             item.update(self._config["default"])
-            self._create_event(item)
+            self._create_event(item, now)
 
-    def _create_event(self, event: dict, override=True) -> None:
+    def _create_event(
+        self,
+        event: dict,
+        lower_bound: datetime.datetime,
+        override=True,
+    ) -> None:
         """
         Create a new event
         @param event : Event desc as dict
+        @param lower_bound: Datetime object. Event will be ignored if its start if before lower_bound
         @param override: If an event already exists with an overlapping timeslot, replace it
         """
         if override:
@@ -43,6 +51,11 @@ class Category:
                 event["start_time"],
                 event["duration"],
             )
+            if start < lower_bound:
+                logging.warning(
+                    f"Event '{event['title']}' starts before lower bound (at {start}). Skip it",
+                )
+                return
             logging.info(
                 f"Adding event '{event['title']}' starting at {start} to {self._calendar_name}",
             )

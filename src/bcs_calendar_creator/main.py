@@ -26,7 +26,12 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
     help="Prevent overriding existing data",
 )
 @click.option("--debug", is_flag=True, default=False, help="Enable debug mode")
-def main(no_override, debug):
+@click.option(
+    "--target",
+    type=str,
+    help="Filter to only one category. Add category key as value. Ex: --target ateliers_level3",
+)
+def main(no_override: bool, debug: bool, target: str):
     # Set up logging with colored output
     setup_logging(debug=debug)
 
@@ -65,10 +70,20 @@ def main(no_override, debug):
             except yamale.YamaleError as e:
                 logging.error(f"Configuration validation failed: {e}")
                 sys.exit(1)
-            for category, data in config.get("categories").items():
-                logging.info(f"Working on {category}")
-                c = Category(category, service, data)
-                c.update()
+            if target:
+                logging.info(f"Filter on {target}")
+                data = config.get("categories").get(target, {})
+                if not data:
+                    logging.warning(f"Category {target} not found")
+                    sys.exit(1)
+                else:
+                    c = Category(target, service, data)
+                    c.update()
+            else:
+                for category, data in config.get("categories").items():
+                    logging.info(f"Working on {category}")
+                    c = Category(category, service, data)
+                    c.update()
 
     except HttpError as error:
         print(f"An error occurred: {error}")
