@@ -45,7 +45,7 @@ poetry run bcs_calendar_creator
 - `--debug`: Enable debug mode for verbose logging
 - `--no-override`: Prevent overriding existing data. If set, overlapping events won't be deleted (default: false, meaning existing events will be overridden)
 - `--target <category_key>`: Filter to only process one specific category instead of all categories
-- `--prune <category_key>`: Prune all future events in one category (⚠️ **Note**: This feature is currently under development)
+- `--prune <category_key>`: Prune all future events in one category
 
 Examples:
 ```bash
@@ -97,6 +97,10 @@ Each category must have:
 
 Each category can optionally have:
     - `default`: Default values that will be applied to all items in this category
+
+#### IDs
+
+Each event has a unique ID. This id is generated based on the category name and the calendar name, so script can be sure it only manages events created by it.
 
 #### Event properties
 
