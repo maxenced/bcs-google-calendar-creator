@@ -76,7 +76,14 @@ def main(no_override: bool, debug: bool, target: str, prune: str):
                 logging.error(f"Configuration validation failed: {e}")
                 sys.exit(1)
             if prune:
-                logging.info(f"Pruning {target}")
+                logging.info(f"Pruning {prune}")
+                data = config.get("categories").get(prune, {})
+                if not data:
+                    logging.warning(f"Category {prune} not found")
+                    sys.exit(1)
+                else:
+                    c = Category(prune, service, data)
+                    c.prune()
 
             elif target:
                 logging.info(f"Filter on {target}")

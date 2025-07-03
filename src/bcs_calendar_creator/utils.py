@@ -1,6 +1,7 @@
 import base64
 import datetime
 import uuid
+import hashlib
 import logging
 from zoneinfo import ZoneInfo
 
@@ -30,7 +31,8 @@ def prefix(name: str, prepend="bcscal"):
     @param name: name to generate id from
     """
     curated_name = "".join([c for c in name if c in "abcdefghijklmnopqrstuv0123456789"])
-    prepend += curated_name[:4]
+    name_hash = hashlib.sha256(curated_name.encode("utf-8")).hexdigest()
+    prepend += name_hash[:4]
 
     return prepend
 

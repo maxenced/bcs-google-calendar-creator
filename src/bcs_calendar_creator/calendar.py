@@ -18,7 +18,7 @@ class Category:
         self._name = name
         self._config = config
         self._calendar = config["calendar"]
-        self._prefix = prefix(self._calendar, "bcscal")
+        self._prefix = prefix(self._calendar + name, "bcscal")
         self._defaults = config.get("default", {})
         self._items = config["items"]
         self._service = service
@@ -39,8 +39,16 @@ class Category:
         Prune all future events from calendar
         @param force : if true, will delete all events, if false, will only delete event set by this tool
         """
+        logging.warning(f"Pruning calendar {self._calendar_name}")
         for existing in self._existing:
-            pass
+            if existing.get("id", "").startswith(self._prefix):
+                logging.info(
+                    f"Delete event {existing.get('id')} from  {self._calendar_name}",
+                )
+                self._service.events().delete(
+                    calendarId=self._calendar,
+                    eventId=existing.get("id"),
+                ).execute()
 
     def _create_event(
         self,
@@ -69,7 +77,7 @@ class Category:
                 f"Adding event '{event['title']}' starting at {start} to {self._calendar_name}",
             )
             for existing in self._existing:
-                if existing.get("id", "").startswith("bcscal"):
+                if existing.get("id", "").startswith(self._prefix):
                     if self._conflicts(existing, start, end):
                         self._service.events().delete(
                             calendarId=self._calendar,
