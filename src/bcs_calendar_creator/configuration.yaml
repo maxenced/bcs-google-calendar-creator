@@ -109,9 +109,9 @@ categories:
   # Level 3
   #
   initiations_level3:
-    calendar: c_685044e5e4c6865de410ac9a2c4bb39cc25e2000774d7cd113a76ea07d001956@group.calendar.google.com
+    calendar: c_9a5896738f84440f8dfeeb5e4336b6c7fe98e52d46001ede08c6bbd4db9f96f3@group.calendar.google.com
     default:
-      title: Initiation + Soirée 100% WCS
+      title: "[Rennes][BCS] Initiation + Soirée 100% WCS"
       location: LEVEL3, 1 rue Jeanne Malivel, Val D'Orson, 35770, 35770 Vern-sur-Seiche, France
       duration: 285 # 4h45 in minutes
       start_time: 20h00
@@ -128,9 +128,9 @@ categories:
       - start_day: 27/06/2026
 
   ateliers_level3:
-    calendar: c_685044e5e4c6865de410ac9a2c4bb39cc25e2000774d7cd113a76ea07d001956@group.calendar.google.com
+    calendar: c_9a5896738f84440f8dfeeb5e4336b6c7fe98e52d46001ede08c6bbd4db9f96f3@group.calendar.google.com
     default:
-      title: Atelier + Soirée 100% WCS
+      title: "[Rennes][BCS] Atelier + Soirée 100% WCS"
       location: LEVEL3, 1 rue Jeanne Malivel, Val D'Orson, 35770, 35770 Vern-sur-Seiche, France
       duration: 285 # 4h45 in minutes
       start_time: 20h00
@@ -151,6 +151,17 @@ categories:
         title: "[A Confirmer] Atelier + Soirée 100% WCS"
       - start_day: 25/04/2026
 
+  dds:
+    calendar: c_9a5896738f84440f8dfeeb5e4336b6c7fe98e52d46001ede08c6bbd4db9f96f3@group.calendar.google.com
+    default:
+      title: "[Rennes][BCS] Dirty Dance Swing"
+      location: Salle du Bocage, Prom. Henri Verger, 35410 Nouvoitou, France
+      duration: 2880 # 2 days
+      start_time: 20h00
+      description: |
+        Informations à venir
+    items:
+      - start_day: 07/11/2025
   #
   # Mardi
   #
