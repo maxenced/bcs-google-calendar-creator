@@ -31,7 +31,7 @@ class Category:
         """
         now = datetime.datetime.now(tz=ZoneInfo("Europe/Paris"))
         for item in self._config.get("items", []):
-            item.update(self._config["default"])
+            item.update(self._config.get("default", {}))
             self._create_event(item, now, no_override=no_override)
 
     def prune(self, force=False):

@@ -36,12 +36,18 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
     type=str,
     help="Prune all future events in one category. Add category key as value. Ex: --prune ateliers_level3",
 )
-def main(no_override: bool, debug: bool, target: str, prune: str):
+@click.option(
+    "-c",
+    "--config-path",
+    type=str,
+    default="src/bcs_calendar_creator/configuration.yaml",
+    help="Path to configuration file",
+)
+def main(no_override: bool, debug: bool, target: str, prune: str, config_path: str):
     # Set up logging with colored output
     setup_logging(debug=debug)
 
     # Validate configuration file against schema
-    config_path = "src/bcs_calendar_creator/configuration.yaml"
     schema_path = "src/bcs_calendar_creator/configuration.yaml.schema"
 
     creds = None
