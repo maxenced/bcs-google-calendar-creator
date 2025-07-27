@@ -103,6 +103,7 @@ holiday_training_days: &holiday_training_days
   - start_day: 16/04/2026
   - start_day: 23/04/2026
 
+credentials_file: credentials.bcs.json
 categories:
 
   #
@@ -141,9 +142,9 @@ categories:
 
         Inscription sur https://level3.audrei.net/events/8696192341af1c1f79548efdb1a2a698
     items:
-      - start_day: 27/09/2025
-      - start_day: 18/10/2025
-      - start_day: 22/11/2025
+      - start_day: 27/09/2025 # A & C
+      - start_day: 18/10/2025 # F & M
+      - start_day: 22/11/2025 #
       - start_day: 10/01/2026
       - start_day: 31/01/2026
       - start_day: 14/02/2026
@@ -199,7 +200,7 @@ categories:
       title: Cours niveau 3 - Mardi
       location: Maison de Quartier La Touche, 6 Rue Cardinal Paul Gouyon, 35000 Rennes, France
       duration: 60
-      start_time: 20h15
+      start_time: 19h15
       description: |
         Cours niveau 3
         Ce cours est suivi de 15 minutes de pratique en commun avec le niveau 1.
