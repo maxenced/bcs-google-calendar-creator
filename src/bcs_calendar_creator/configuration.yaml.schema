@@ -1,3 +1,4 @@
+credentials_file: str()
 categories: map(include('category'), key=str())
 ---
 

@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 token.json
-credentials.json
+credentials.*
 # C extensions
 *.so
 

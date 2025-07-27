@@ -50,6 +50,18 @@ def main(no_override: bool, debug: bool, target: str, prune: str, config_path: s
     # Validate configuration file against schema
     schema_path = "src/bcs_calendar_creator/configuration.yaml.schema"
 
+    with open(config_path, "r") as f:
+        config = yaml.load(f, yaml.SafeLoader)
+        try:
+            logging.info("Validating configuration file against schema")
+            schema = yamale.make_schema(schema_path)
+            data = yamale.make_data(content=yaml.dump(config))
+            yamale.validate(schema, data, strict=False)
+            logging.info("Configuration validation successful")
+        except yamale.YamaleError as e:
+            logging.error(f"Configuration validation failed: {e}")
+            sys.exit(1)
+
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -58,53 +70,53 @@ def main(no_override: bool, debug: bool, target: str, prune: str, config_path: s
         creds = Credentials.from_authorized_user_file("token.json", SCOPES)
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
+        authed = False
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+            try:
+                creds.refresh(Request())
+                authed = True
+            except Exception:
+                pass
+        if not authed:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                config.get("credentials_file"),
+                SCOPES,
+            )
             creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
-        with open("token.json", "w") as token:
-            token.write(creds.to_json())
+        if not creds or not creds.valid:
+            logging.exception("Unable to login with provided credentials file")
+        else:
+            # Save the credentials for the next run
+            with open("token.json", "w") as token:
+                token.write(creds.to_json())
 
     try:
         logging.info("Starting")
         service = build("calendar", "v3", credentials=creds)
-        with open(config_path, "r") as f:
-            config = yaml.load(f, yaml.SafeLoader)
-            try:
-                logging.info("Validating configuration file against schema")
-                schema = yamale.make_schema(schema_path)
-                data = yamale.make_data(content=yaml.dump(config))
-                yamale.validate(schema, data, strict=False)
-                logging.info("Configuration validation successful")
-            except yamale.YamaleError as e:
-                logging.error(f"Configuration validation failed: {e}")
+        if prune:
+            logging.info(f"Pruning {prune}")
+            data = config.get("categories").get(prune, {})
+            if not data:
+                logging.warning(f"Category {prune} not found")
                 sys.exit(1)
-            if prune:
-                logging.info(f"Pruning {prune}")
-                data = config.get("categories").get(prune, {})
-                if not data:
-                    logging.warning(f"Category {prune} not found")
-                    sys.exit(1)
-                else:
-                    c = Category(prune, service, data)
-                    c.prune()
-
-            elif target:
-                logging.info(f"Filter on {target}")
-                data = config.get("categories").get(target, {})
-                if not data:
-                    logging.warning(f"Category {target} not found")
-                    sys.exit(1)
-                else:
-                    c = Category(target, service, data)
-                    c.update()
             else:
-                for category, data in config.get("categories").items():
-                    logging.info(f"Working on {category}")
-                    c = Category(category, service, data)
-                    c.update(no_override)
+                c = Category(prune, service, data)
+                c.prune()
+
+        elif target:
+            logging.info(f"Filter on {target}")
+            data = config.get("categories").get(target, {})
+            if not data:
+                logging.warning(f"Category {target} not found")
+                sys.exit(1)
+            else:
+                c = Category(target, service, data)
+                c.update()
+        else:
+            for category, data in config.get("categories").items():
+                logging.info(f"Working on {category}")
+                c = Category(category, service, data)
+                c.update(no_override)
 
     except HttpError as error:
         print(f"An error occurred: {error}")
