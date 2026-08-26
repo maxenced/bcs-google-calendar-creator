@@ -1,33 +1,43 @@
-[tool.poetry]
+[project]
 name = "bcs_calendar_creator"
 version = "0.1.0"
 description = "Create Google compatible calendars from spec"
-authors = ["Claranet <Maxence>"]
+authors = [{ name = "Claranet", email = "Maxence" }]
+requires-python = ">=3.13,<4"
 readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "google-api-python-client>=2.172.0,<3",
+    "google-auth-httplib2>=0.2.0,<0.3",
+    "google-auth-oauthlib>=1.2.2,<2",
+    "click>=8.1.7,<9",
+    "pyyaml>=6.0.2,<7",
+    "colorlog>=6.8.2,<7",
+    "yamale>=4.0.4,<5",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-google-api-python-client = "^2.172.0"
-google-auth-httplib2 = "^0.2.0"
-google-auth-oauthlib = "^1.2.2"
-click = "^8.1.7"
-pyyaml = "^6.0.2"
-colorlog = "^6.8.2"
-yamale = "^4.0.4"
+[project.scripts]
+bcs_calendar_creator = "bcs_calendar_creator.main:main"
 
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.4.0"
-pyright = "^1.1.335"
-pytest = "^8.1.1"
-tox = "^4.14.2"
+[dependency-groups]
+dev = [
+    "ruff>=0.4.0,<0.5",
+    "pyright>=1.1.335,<2",
+    "pytest>=8.1.1,<9",
+    "tox>=4.14.2,<5",
+]
 
-[tool.poetry.scripts]
-bcs_calendar_creator = 'bcs_calendar_creator.main:main'
+[tool.uv]
+default-groups = "all"
+
+[build-system]
+requires = ["uv_build>=0.11.21,<0.12.0"]
+build-backend = "uv_build"
 
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"

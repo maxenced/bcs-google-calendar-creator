@@ -11,7 +11,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-from bcs_calendar_creator.calendar import Category
+from bcs_calendar_creator.g_calendar import Category
 from bcs_calendar_creator.logging_config import setup_logging
 
 # If modifying these scopes, delete the file token.json.
