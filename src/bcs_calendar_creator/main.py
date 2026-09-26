@@ -14,7 +14,7 @@ from googleapiclient.errors import HttpError
 from bcs_calendar_creator.g_calendar import Category
 from bcs_calendar_creator.logging_config import setup_logging
 
-# If modifying these scopes, delete the file token.json.
+# If modifying these scopes, delete the *.token.json files.
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
 
@@ -63,11 +63,14 @@ def main(no_override: bool, debug: bool, target: str, prune: str, config_path: s
             sys.exit(1)
 
     creds = None
-    # The file token.json stores the user's access and refresh tokens, and is
+    credentials_file = config.get("credentials_file")
+    # The token file stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
-    # time.
-    if os.path.exists("token.json"):
-        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+    # time. It is bound to the credentials file, so each configuration keeps its own account.
+    token_file = os.path.splitext(credentials_file)[0] + ".token.json"
+    if os.path.exists(token_file):
+        logging.debug(f"Loading token from {token_file}")
+        creds = Credentials.from_authorized_user_file(token_file, SCOPES)
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         authed = False
@@ -78,8 +81,11 @@ def main(no_override: bool, debug: bool, target: str, prune: str, config_path: s
             except Exception:
                 pass
         if not authed:
+            if not os.path.exists(credentials_file):
+                logging.error(f"Credentials file {credentials_file} not found")
+                sys.exit(1)
             flow = InstalledAppFlow.from_client_secrets_file(
-                config.get("credentials_file"),
+                credentials_file,
                 SCOPES,
             )
             creds = flow.run_local_server(port=0)
@@ -87,12 +93,15 @@ def main(no_override: bool, debug: bool, target: str, prune: str, config_path: s
             logging.exception("Unable to login with provided credentials file")
         else:
             # Save the credentials for the next run
-            with open("token.json", "w") as token:
+            with open(token_file, "w") as token:
                 token.write(creds.to_json())
 
     try:
         logging.info("Starting")
         service = build("calendar", "v3", credentials=creds)
+        # The primary calendar id is the email of the authenticated account
+        account = service.calendars().get(calendarId="primary").execute().get("id")
+        logging.info(f"Logged in as {account}")
         if prune:
             logging.info(f"Pruning {prune}")
             data = config.get("categories").get(prune, {})

@@ -3,15 +3,15 @@
 install:
 	@mise install
 	@pre-commit install
-	@poetry install
+	@uv sync
 
 check:
-	@poetry run tox -e lint
+	@uv run tox -e lint
 	@pre-commit run --all-files
 
 update:
-	@poetry update
-	@poetry lock
+	@uv lock --upgrade
+	@uv sync
 	@pre-commit autoupdate
 
 update-tooling:
@@ -19,4 +19,4 @@ update-tooling:
 
 test:
 	# Running tests
-	@poetry run tox
+	@uv run tox

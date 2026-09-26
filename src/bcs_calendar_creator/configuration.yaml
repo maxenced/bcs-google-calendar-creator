@@ -127,13 +127,15 @@ thursday_days: &thursday_days
   - start_day: 03/06/2027
 
 holiday_training_days: &holiday_training_days
-  - start_day: 23/10/2025
-  - start_day: 30/10/2025
-  - start_day: 13/11/2025
-  - start_day: 19/02/2027
-  - start_day: 26/02/2026
-  - start_day: 16/04/2026
-  - start_day: 23/04/2026
+  - start_day: 22/10/2026
+  - start_day: 29/10/2026
+  - start_day: 25/02/2027
+  - start_day: 04/03/2027
+  - start_day: 22/04/2027
+  - start_day: 29/04/2027
+  - start_day: 10/06/2027
+  - start_day: 17/06/2027
+  - start_day: 24/06/2027
 
 credentials_file: credentials.bcs.json
 categories:
@@ -381,8 +383,8 @@ categories:
 
   #       Informations (niveaux, horaires exacts) à venir.
 
-  # entrainement_jeudi_vacances:
-  #   calendar: c_27c826c3086f4de1829bac9712eaf60fcca9169438715e1d294e8ee1344fb382@group.calendar.google.com
-  #   default:
-  #     <<: *entrainement_jeudi
-  #   items: *holiday_training_days
+  entrainement_jeudi_vacances:
+    calendar: c_27c826c3086f4de1829bac9712eaf60fcca9169438715e1d294e8ee1344fb382@group.calendar.google.com
+    default:
+      <<: *entrainement_jeudi
+    items: *holiday_training_days

@@ -14,51 +14,71 @@ categories:
       description: |
         Cours du niveau sans prérequis.
     items:
-      - start_day: 25/09/2025
-      - start_day: 09/10/2025
-      - start_day: 06/11/2025
-      - start_day: 20/11/2025
-      - start_day: 04/12/2025
-      - start_day: 08/01/2026
-      - start_day: 22/01/2026
-      - start_day: 05/02/2026
-      - start_day: 12/03/2026
-      - start_day: 26/03/2026
-      - start_day: 30/04/2026
-      - start_day: 21/05/2026
-      - start_day: 04/06/2026
-      - start_day: 18/06/2026
+      - start_day: 16/09/2026
+      - start_day: 23/09/2026
+      - start_day: 30/09/2026
+      - start_day: 07/10/2026
+      - start_day: 14/10/2026
+      - start_day: 04/11/2026
+      - start_day: 18/11/2026
+      - start_day: 25/11/2026
+      - start_day: 02/12/2026
+      - start_day: 09/12/2026
+      - start_day: 16/12/2026
+      - start_day: 06/01/2027
+      - start_day: 13/01/2027
+      - start_day: 20/01/2027
+      - start_day: 27/01/2027
+      - start_day: 03/02/2027
+      - start_day: 10/02/2027
+      - start_day: 17/02/2027
+      - start_day: 10/03/2027
+      - start_day: 17/03/2027
+      - start_day: 24/03/2027
+      - start_day: 31/03/2027
+      - start_day: 07/04/2027
+      - start_day: 14/04/2027
+      - start_day: 05/05/2027
+      - start_day: 12/05/2027
+      - start_day: 19/05/2027
+      - start_day: 26/05/2027
+      - start_day: 02/06/2027
+      - start_day: 09/06/2027
+      - start_day: 16/06/2027
+      - start_day: 23/06/2027
+      - start_day: 30/06/2027
 
-  n1_commun:
-    calendar: d859699b2523522a18886ae4c450717d4c12bccd518bade0ca9f376fc58a6d97@group.calendar.google.com
-    default: &communs_desc
-      title: "[AYR] Cours communs"
-      location: *location
-      duration: 120
-      start_time: 19h30
-      description: |
-        Cours commun tous niveaux.
-    items: &communs_dates
-      - start_day: 18/09/2025
-      - start_day: 18/12/2025
-      - start_day: 09/04/2026
-      - start_day: 02/07/2026
 
-  spe_basique:
-    calendar: 62400f12dc11b7bab8498beb9f0bff64b24a5f66ce8da1ca235b438a1e72f386@group.calendar.google.com
-    default:
-      title: "[AYR] Cours spécifiques révisions de basique"
-      location: *location
-      duration: 120
-      start_time: 19h30
-      description: |
-        Cours orientés sur la révision des basiques.
-    items:
-      - start_day: 13/11/2025
-      - start_day: 11/12/2025
-      - start_day: 29/01/2026
-      - start_day: 19/03/2026
-      - start_day: 02/04/2026
+  # n1_commun:
+  #   calendar: d859699b2523522a18886ae4c450717d4c12bccd518bade0ca9f376fc58a6d97@group.calendar.google.com
+  #   default: &communs_desc
+  #     title: "[AYR] Cours communs"
+  #     location: *location
+  #     duration: 120
+  #     start_time: 19h30
+  #     description: |
+  #       Cours commun tous niveaux.
+  #   items: &communs_dates
+  #     - start_day: 18/09/2025
+  #     - start_day: 18/12/2025
+  #     - start_day: 09/04/2026
+  #     - start_day: 02/07/2026
+
+  # spe_basique:
+  #   calendar: 62400f12dc11b7bab8498beb9f0bff64b24a5f66ce8da1ca235b438a1e72f386@group.calendar.google.com
+  #   default:
+  #     title: "[AYR] Cours spécifiques révisions de basique"
+  #     location: *location
+  #     duration: 120
+  #     start_time: 19h30
+  #     description: |
+  #       Cours orientés sur la révision des basiques.
+  #   items:
+  #     - start_day: 13/11/2025
+  #     - start_day: 11/12/2025
+  #     - start_day: 29/01/2026
+  #     - start_day: 19/03/2026
+  #     - start_day: 02/04/2026
   #
   # Avec prérequis
   #
@@ -72,98 +92,106 @@ categories:
       description: |
         Cours du niveau avec prérequis.
     items:
-      - start_day: 02/10/2025
-      - start_day: 16/10/2025
-      - start_day: 13/11/2025
-      - start_day: 27/11/2025
-      - start_day: 11/12/2025
-      - start_day: 15/01/2026
-      - start_day: 29/01/2026
-      - start_day: 12/02/2026
-      - start_day: 19/03/2026
-      - start_day: 02/04/2026
-      - start_day: 07/05/2026
-      - start_day: 28/05/2026
-      - start_day: 11/06/2026
-      - start_day: 25/06/2026
+      - start_day: 17/09/2026
+      - start_day: 01/10/2026
+      - start_day: 15/10/2026
+      - start_day: 05/11/2026
+      - start_day: 19/11/2026
+      - start_day: 03/12/2026
+      - start_day: 17/12/2026
+      - start_day: 07/01/2027
+      - start_day: 21/01/2027
+      - start_day: 04/02/2027
+      - start_day: 18/02/2027
+      - start_day: 11/03/2027
+      - start_day: 25/03/2027
+      - start_day: 08/04/2027
+      - start_day: 13/05/2027
+      - start_day: 27/05/2027
+      - start_day: 03/06/2027
+      - start_day: 17/06/2027
+      - start_day: 24/06/2027
 
-  n2_commun:
-    calendar: e616cc44a81125656ef5d44582b7438431a73994f278599027203ac22f50c806@group.calendar.google.com
-    default: *communs_desc
-    items: *communs_dates
+  # n2_commun:
+  #   calendar: e616cc44a81125656ef5d44582b7438431a73994f278599027203ac22f50c806@group.calendar.google.com
+  #   default: *communs_desc
+  #   items: *communs_dates
 
   #
   # Perf
   #
-  n3:
+  jam_jeudi:
     calendar: 1c05f2a80b9b596d72eb89733d87b8259e038ec89dec53f8e8db32ce70aecc37@group.calendar.google.com
     default:
-      title: "[AYR] Cours spécifiques expérimentés"
+      title: "[AYR] Jams du jeudi"
       location: *location
       duration: 120
       start_time: 19h30
       description: |
-        Cours spécifiques pour élèves expérimentés.
+        Jams à la maison de Quartier (ou parfois dehors les beaux jours).
     items:
-      - start_day: 09/10/2025
-      - start_day: 20/11/2025
-      - start_day: 04/12/2025
-      - start_day: 08/01/2026
-      - start_day: 05/02/2026
-      - start_day: 12/03/2026
-      - start_day: 30/04/2026
-      - start_day: 21/05/2026
-      - start_day: 04/06/2026
-
+      - start_day: 24/09/2026
+      - start_day: 08/10/2026
+      - start_day: 12/11/2026
+      - start_day: 26/11/2026
+      - start_day: 10/12/2026
+      - start_day: 14/01/2027
+      - start_day: 28/01/2027
+      - start_day: 11/02/2027
+      - start_day: 18/03/2027
+      - start_day: 01/04/2027
+      - start_day: 15/04/2027
+      - start_day: 20/05/2027
+      - start_day: 10/06/2027
 
   #
   # Events
   #
-  events:
-    calendar: &event_cal b1933d3dae0d738e463642f88a806f57d507c7271145e5edfe8b42695369454e@group.calendar.google.com
-    items:
-      - start_day: 27/09/2025
-        title: "[AYR] Acrospirit - Intensive Workshop"
-        location: &event_loc Maison de Quartier de Bréquigny, 1 place de la Communauté, 35000 Rennes
-        duration: &event_duration 1890
-        start_time: 10h00
-        description: |
-          AYR Acroyoga Rennes accueille ACROSPIRIT (Caspian et Laura), profs internationaux, pour une série d'ateliers d'Acroyoga sur des thématiques comme les icariens, les washing machines et le main à main.
+  # events:
+  #   calendar: &event_cal b1933d3dae0d738e463642f88a806f57d507c7271145e5edfe8b42695369454e@group.calendar.google.com
+  #   items:
+  #     - start_day: 27/09/2025
+  #       title: "[AYR] Acrospirit - Intensive Workshop"
+  #       location: &event_loc Maison de Quartier de Bréquigny, 1 place de la Communauté, 35000 Rennes
+  #       duration: &event_duration 1890
+  #       start_time: 10h00
+  #       description: |
+  #         AYR Acroyoga Rennes accueille ACROSPIRIT (Caspian et Laura), profs internationaux, pour une série d'ateliers d'Acroyoga sur des thématiques comme les icariens, les washing machines et le main à main.
 
-          Au programme : du flow, des pops, du foot to foot, du hand to hand... Stage soumis à pré requis (ninja star, pop bird à bird et Foot to Hand). Plusieurs variations seront proposées pour s'adapter à tout le monde !
+  #         Au programme : du flow, des pops, du foot to foot, du hand to hand... Stage soumis à pré requis (ninja star, pop bird à bird et Foot to Hand). Plusieurs variations seront proposées pour s'adapter à tout le monde !
 
-          Détails : https://www.helloasso.com/associations/ayr-acroyoga-rennes/evenements/acrospirit-en-france-we-intensif
+  #         Détails : https://www.helloasso.com/associations/ayr-acroyoga-rennes/evenements/acrospirit-en-france-we-intensif
 
-      - start_day: 01/11/2025
-        title: "[AYR] AcroYoga Montreal"
-        location: *event_loc
-        duration: *event_duration
-        start_time: 10h00
-        description: |
-          Mélanie des Poissons Volants et @marie_acroyogui, toutes 2 certifiées @acroyogamontreal vous proposent un weekend tourné vers la créativité ! Sortez du L basing et venez explorer un autre type d'acroyoga :)
+  #     - start_day: 01/11/2025
+  #       title: "[AYR] AcroYoga Montreal"
+  #       location: *event_loc
+  #       duration: *event_duration
+  #       start_time: 10h00
+  #       description: |
+  #         Mélanie des Poissons Volants et @marie_acroyogui, toutes 2 certifiées @acroyogamontreal vous proposent un weekend tourné vers la créativité ! Sortez du L basing et venez explorer un autre type d'acroyoga :)
 
-      - start_day: 17/01/2026
-        title: "[AYR] Acro Level Up"
-        location: *event_loc
-        duration: *event_duration
-        start_time: 10h00
-        description: |
-          Kéké nous avait déjà rendu visite, et c'est avec une grande joie que nous le réinvitons pour un stage intensif "Acro Level Up"! Il s'adaptera au niveau de chacun pour nous permettre une progression efficace et challengeante.
+  #     - start_day: 17/01/2026
+  #       title: "[AYR] Acro Level Up"
+  #       location: *event_loc
+  #       duration: *event_duration
+  #       start_time: 10h00
+  #       description: |
+  #         Kéké nous avait déjà rendu visite, et c'est avec une grande joie que nous le réinvitons pour un stage intensif "Acro Level Up"! Il s'adaptera au niveau de chacun pour nous permettre une progression efficace et challengeante.
 
-          Par exemple : si tu maîtrises le 4 step, prépare-toi à découvrir la 3 step - 2 step - 1 step ou même la 4 step sans les mains ! A chacun son niveau !
+  #         Par exemple : si tu maîtrises le 4 step, prépare-toi à découvrir la 3 step - 2 step - 1 step ou même la 4 step sans les mains ! A chacun son niveau !
 
-      - start_day: 07/03/2026
-        title: "[AYR] Rennes Reçoit"
-        location: *event_loc
-        duration: *event_duration
-        start_time: 10h00
-        description: |
-          Kéké nous avait déjà rendu visite, et c'est avec une grande joie que nous le réinvitons pour un stage intensif "Acro Level Up"! Il s'adaptera au niveau de chacun pour nous permettre une progression efficace et challengeante.
+  #     - start_day: 07/03/2026
+  #       title: "[AYR] Rennes Reçoit"
+  #       location: *event_loc
+  #       duration: *event_duration
+  #       start_time: 10h00
+  #       description: |
+  #         Kéké nous avait déjà rendu visite, et c'est avec une grande joie que nous le réinvitons pour un stage intensif "Acro Level Up"! Il s'adaptera au niveau de chacun pour nous permettre une progression efficace et challengeante.
 
-      - start_day: 13/06/2026
-        title: "[AYR] Professeur·e·s internationaux"
-        location: *event_loc
-        duration: *event_duration
-        start_time: 10h00
-        description: |
-          Tiens-toi prêt, c'est du lourd. On te balancera le nom courant de l'année, suis-nous pour savoir qui viendra en France pour la première fois !
+  #     - start_day: 13/06/2026
+  #       title: "[AYR] Professeur·e·s internationaux"
+  #       location: *event_loc
+  #       duration: *event_duration
+  #       start_time: 10h00
+  #       description: |
+  #         Tiens-toi prêt, c'est du lourd. On te balancera le nom courant de l'année, suis-nous pour savoir qui viendra en France pour la première fois !

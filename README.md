@@ -28,16 +28,22 @@ Before running the script, you need to:
     - Create a new project or select an existing one
     - Enable the Google Calendar API
     - Create credentials (OAuth 2.0 Client ID) for a desktop application
-    - Download the credentials file and save it as `credentials.json` in the project root directory
+    - Download the credentials file and save it in the project root directory (e.g. `credentials.json`), then reference it with the `credentials_file` key of your configuration file
 
-2. **Run from the project root directory:** The script expects to find `credentials.json` and the configuration files in the current working directory.
+2. **Install the project dependencies** with `make install` (see [Getting started](#getting-started)), or directly with [uv](https://docs.astral.sh/uv/):
+
+```bash
+uv sync
+```
+
+3. **Run from the project root directory:** The script expects to find the credentials file and the configuration files in the current working directory.
 
 ### Running the script
 
-Run the script using Poetry from the project root directory:
+Run the script using uv from the project root directory:
 
 ```bash
-poetry run bcs_calendar_creator
+uv run bcs_calendar_creator
 ```
 
 ### Command line options
@@ -46,30 +52,35 @@ poetry run bcs_calendar_creator
 - `--no-override`: Prevent overriding existing data. If set, overlapping events won't be deleted (default: false, meaning existing events will be overridden)
 - `--target <category_key>`: Filter to only process one specific category instead of all categories
 - `--prune <category_key>`: Prune all future events in one category
+- `-c, --config-path <path>`: Path to the configuration file (default: `src/bcs_calendar_creator/configuration.yaml`)
 
 Examples:
 ```bash
 # Run with debug logging
-poetry run bcs_calendar_creator --debug
+uv run bcs_calendar_creator --debug
 
 # Process only the "ateliers_level3" category
-poetry run bcs_calendar_creator --target ateliers_level3
+uv run bcs_calendar_creator --target ateliers_level3
 
 # Run without overriding existing events
-poetry run bcs_calendar_creator --no-override
+uv run bcs_calendar_creator --no-override
 
 # Prune all future events from a specific category (under development)
-poetry run bcs_calendar_creator --prune ateliers_level3
+uv run bcs_calendar_creator --prune ateliers_level3
+
+# Use another configuration file
+uv run bcs_calendar_creator -c src/bcs_calendar_creator/configuration.ayr.yaml
 
 # Combine options
-poetry run bcs_calendar_creator --debug --target cours_n1_mardi --no-override
+uv run bcs_calendar_creator --debug --target cours_n1_mardi --no-override
 ```
 
 ### Configuration format
 
-The script uses [`configuration.yaml`](src/bcs_calendar_creator/configuration.yaml) to define calendar events. The configuration file has the following structure:
+The script uses [`configuration.yaml`](src/bcs_calendar_creator/configuration.yaml) by default to define calendar events. The configuration file has the following structure:
 
 ```yaml
+credentials_file: credentials.json  # OAuth client credentials file
 categories:
     category_name:
         calendar: "google_calendar_id@group.calendar.google.com"
@@ -118,7 +129,9 @@ Properties defined in individual items override the corresponding properties fro
 
 On first run, the script will:
     1. Open your web browser for Google OAuth authentication
-    2. Create a `token.json` file to store your authentication tokens
+    2. Create a token file next to the credentials file to store your authentication tokens (e.g. `credentials.ayr.json` → `credentials.ayr.token.json`)
     3. Use the stored tokens for subsequent runs
 
-The `token.json` file will be automatically refreshed when needed.
+The token file will be automatically refreshed when needed. Each credentials file has its own token file, so each configuration file can use a different Google account. To log in again with another account, delete the matching token file.
+
+Once logged in, the script logs the Google account actually in use (`Logged in as <email>`), as reported by the Calendar API.
